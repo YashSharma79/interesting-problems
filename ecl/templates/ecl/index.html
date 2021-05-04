@@ -1,0 +1,95 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'ecl/style.css' %}">
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="{% static 'ecl/js/index.js' %}"></script>
+<!DOCTYPE html>
+
+<html>
+
+<body>
+    <nav>
+        <div class="nav-wrapper black lighten-2">
+            <a href="/ecl" class="brand-logo">Interesting Problems</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="about.html">About</a></li>
+                <li><a href="https://github.com/YashSharma79/interesting-problems">Source</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="col" id="main">
+        <div class="row">
+            <div class="col s2">
+                {% if tags %}
+                <ul class="collection">
+                    {% for t in tags %}
+                    <li class="collection-item"><a href="{% url 'ecl:bytag' t.id %}">{{ t.tag }}</a></li>
+                    {% endfor %}
+                </ul>
+                {% endif %
+            </div>
+            <div class="container">
+                <h6>Error correction is the beginning of infinity - David Deutsch</h6>
+
+                {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+                <div class="row">
+                    <form class="col s6" action="{% url 'ecl:add'%}" method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="entry_box">Problem</label>
+                                <textarea id="entry_box" name="entry_box" class="materialize-textarea"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="textarea2">Correction</label>
+                                <textarea id="correction_box" name="correction_box"
+                                    class="materialize-textarea"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <label for="category">Tag</label>
+                                <textarea id="category" name="category" class="materialize-textarea"></textarea>
+                            </div>
+                        </div>
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Add
+                        </button>
+                    </form>
+                </div>
+
+                {% if entries %}
+                <ul class="collapsible expandable">
+                    {% for entry in entries %}
+
+                    <li>
+                        <div class="collapsible-header s6">{{ entry.error_text }}</div>
+                        <div class="collapsible-body s6"><span>{{ entry.correction_text }}</span></div>
+                    </li>
+
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p>No entries are available.</p>
+                {% endif %}
+            </div>
+        </div>
+        <script>
+            var elem = document.querySelector('.collapsible.expandable');
+            var instance = M.Collapsible.init(elem, {
+                accordion: true
+            });
+        </script>
+
+</body>
+
+</html>
