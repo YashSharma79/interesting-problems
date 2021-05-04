@@ -90,15 +90,15 @@ if 'RDS_DB_NAME' in os.environ:
     }
 else:
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'int-prob',
-            'USER': 'postgres',
-            'PASSWORD': 'ep1aka7y',
-            'HOST': 'aapcwf0oktz9kq.c37vg5ram0mg.ap-south-1.rds.amazonaws.com',
-            'PORT': '5432',
-        }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'intprob',
+        'USER': 'yash',
+        'PASSWORD': 'ep1aka7y',
+        'HOST': 'localhost',
+        'PORT': '',
     }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
