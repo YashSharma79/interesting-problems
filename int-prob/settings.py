@@ -26,7 +26,7 @@ SECRET_KEY = 'k#vbx_@^a&z+t+u6=u6i$ysfcj3z(+lw696&hx=t1$at-bn+09'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['int-prob-env.ap-south-1.elasticbeanstalk.com',
+ALLOWED_HOSTS = ['59.65.155.53',
                  'intprob.lastphoton.com',
                  '127.0.0.1']
 
